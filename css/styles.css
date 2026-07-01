@@ -789,17 +789,32 @@ a:focus-visible,
     var(--surface-alt);
 }
 
-/* Section Recherche : bandeau vitrine sombre (visuel Canva) en tête de section. */
-#recherche { padding-top: 0; }
-.research-banner {
+/* Bandeaux vitrine sombre (visuels Canva) en tête de section. */
+#recherche, #competences, #parcours { padding-top: 0; }
+.research-banner, .skills-banner, .parcours-banner {
   position: relative;
   margin-bottom: var(--space-6);
   padding-block: clamp(3rem, 7vw, 5rem);
-  background:
-    linear-gradient(90deg, rgba(4, 12, 20, 0.95) 0%, rgba(4, 12, 20, 0.82) 40%, rgba(4, 12, 20, 0.42) 72%, rgba(4, 12, 20, 0.2) 100%),
-    url('/img/recherche-bg.jpg') right center / cover no-repeat;
   background-color: #06131e;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: cover;
   border-bottom: 1px solid var(--line);
+}
+.research-banner {
+  background-image:
+    linear-gradient(90deg, rgba(4, 12, 20, 0.95) 0%, rgba(4, 12, 20, 0.82) 40%, rgba(4, 12, 20, 0.42) 72%, rgba(4, 12, 20, 0.2) 100%),
+    url('/img/recherche-bg.jpg');
+}
+.skills-banner {
+  background-image:
+    linear-gradient(90deg, rgba(4, 12, 20, 0.95) 0%, rgba(4, 12, 20, 0.82) 42%, rgba(4, 12, 20, 0.44) 74%, rgba(4, 12, 20, 0.24) 100%),
+    url('/img/competences-bg.jpg');
+}
+.parcours-banner {
+  background-image:
+    linear-gradient(90deg, rgba(4, 12, 20, 0.95) 0%, rgba(4, 12, 20, 0.82) 42%, rgba(4, 12, 20, 0.44) 74%, rgba(4, 12, 20, 0.24) 100%),
+    url('/img/parcours-bg.jpg');
 }
 .section-head--ondark {
   text-align: left;
