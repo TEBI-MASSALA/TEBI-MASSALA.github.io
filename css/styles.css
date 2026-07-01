@@ -1055,12 +1055,94 @@ a:focus-visible,
   transform: translateY(-6px) scale(1.012);
 }
 
+/* =============================================================================
+   HERO MODERNE (façon 21st.dev) — badge de statut, pleine hauteur, CTA à halo,
+   indicateur de défilement animé.
+   ========================================================================== */
+.hero {
+  display: flex;
+  align-items: center;
+  min-height: min(92vh, 860px);
+}
+.hero-inner { width: 100%; }
+
+/* Badge de statut avec point lumineux qui pulse. */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-dark);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(234, 240, 247, 0.2);
+  border-radius: 999px;
+  padding: 0.4rem 0.95rem;
+  backdrop-filter: blur(6px);
+}
+.hero-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  animation: dotPulse 2.2s ease-out infinite;
+}
+@keyframes dotPulse {
+  0% { box-shadow: 0 0 0 0 rgba(95, 206, 146, 0.55); }
+  70% { box-shadow: 0 0 0 9px rgba(95, 206, 146, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(95, 206, 146, 0); }
+}
+
+/* CTA principal du hero : halo coloré. */
+.hero-actions .btn--accent { box-shadow: 0 10px 28px rgba(16, 182, 166, 0.35); }
+.hero-actions .btn--accent:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(16, 182, 166, 0.5); }
+
+/* Indicateur de défilement (souris animée) en bas du hero. */
+.hero-scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: block;
+}
+.hero-scroll-mouse {
+  display: block;
+  width: 24px;
+  height: 38px;
+  border: 2px solid rgba(234, 240, 247, 0.55);
+  border-radius: 13px;
+  position: relative;
+}
+.hero-scroll-mouse::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  width: 4px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--accent-light);
+  transform: translateX(-50%);
+  animation: scrollDot 1.7s ease-in-out infinite;
+}
+@keyframes scrollDot {
+  0% { opacity: 0; transform: translate(-50%, 0); }
+  40% { opacity: 1; }
+  80% { opacity: 0; transform: translate(-50%, 13px); }
+  100% { opacity: 0; }
+}
+.hero-scroll:hover .hero-scroll-mouse { border-color: var(--accent-light); }
+
 /* --- Réduction de mouvement ---------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .section::before, .section::after,
   .hero::before,
   .section-title, .hero-title, .nav-brand,
-  .sk-ico { animation: none; }
+  .sk-ico, .hero-badge-dot,
+  .hero-scroll-mouse::before { animation: none; }
   .reveal.is-visible :is(.skills-grid, .timeline, .docs-grid, .pub-list, .contact-grid, .logos-row) > * { animation: none; }
   .scroll-progress { display: none; }
 }
